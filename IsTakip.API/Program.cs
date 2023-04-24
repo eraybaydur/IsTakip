@@ -4,6 +4,8 @@ using IsTakip.Core.UnitOfWorks;
 using IsTakip.Repository;
 using IsTakip.Repository.Repositories;
 using IsTakip.Repository.UnitOfWork;
+using IsTakip.Service.Mapping;
+using IsTakip.Service.Services;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
@@ -21,8 +23,8 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
-//builder.Services.AddScoped(typeof(IService<>), typeof(Service<>));
-
+builder.Services.AddScoped(typeof(IService<>), typeof(Service<>));
+builder.Services.AddAutoMapper(typeof(MapProfile));
 //Applying connection string to the Context
 builder.Services.AddDbContext<DataContext>(opt =>
 {

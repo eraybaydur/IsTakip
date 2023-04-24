@@ -1,8 +1,4 @@
-﻿using IsTakip.Core.Classes.BaseClasses;
-using IsTakip.Core.Classes.DepoClasses;
-using IsTakip.Core.Classes.IsClasses;
-
-namespace IsTakip.Core.Classes.KullaniciClasses;
+﻿namespace IsTakip.Core.Classes.KullaniciClasses;
 
 public class Kullanici
 {
@@ -15,8 +11,9 @@ public class Kullanici
     public bool MailBildirim { get; set; }
     public string? RolTanim { get; set; }
 
-    public bool Aktif { get; set; }
+    public bool Aktif { get; set; } = true;
     public bool Silindi { get; set; }
-   
+
+    
 
 }

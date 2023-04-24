@@ -7,7 +7,6 @@ public class Musteri : BaseObject
 {
     public string Tanim { get; set; }
     public int MusteriSinifId { get; set; }
-    public int MusteriKisitlamaId { get; set; }
     public int MusteriTemsilcisiId { get; set; }
     public string Adres { get; set; }
     public string Telefon { get; set; }
