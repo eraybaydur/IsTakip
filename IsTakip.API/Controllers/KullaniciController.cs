@@ -25,6 +25,7 @@ namespace IsTakip.API.Controllers
         public async Task<IActionResult> All()
         {
             var kullanicilar = await _service.GetAllAsync();
+            
             return Ok(kullanicilar);
         }
 

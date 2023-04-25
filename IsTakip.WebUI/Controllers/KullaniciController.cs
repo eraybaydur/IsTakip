@@ -20,11 +20,13 @@ namespace IsTakip.WebUI.Controllers
         public async Task<IActionResult> Index()
         {
             var kullanicilar = _service.Where(k=> k.RolTanim != "Yönetici").ToList();
-            if(kullanicilar.Count == 0 || kullanicilar is null)
+            var kullaniciDto = _mapper.Map<List<KullaniciCreateDto>>(kullanicilar);
+            
+            if (kullanicilar.Count == 0 || kullanicilar is null)
             {
                 ViewBag.Error = "Herhangi bir kullanıcı bulunamadı.";
             }
-            return View(kullanicilar);
+            return View(kullaniciDto);
         }
          
         public async Task<IActionResult> Create()
@@ -38,5 +40,43 @@ namespace IsTakip.WebUI.Controllers
             await _service.AddAsync(_mapper.Map<Kullanici>(dto));
             return RedirectToAction(nameof(Index));
         }
+
+        public async Task<IActionResult> Delete(int id)
+        {
+            var deletedUser = await _service.GetByIdAsync(id);
+            if (deletedUser != null)
+            {
+                await _service.RemoveAsync(deletedUser);
+                return RedirectToAction(nameof(Index));
+            }
+           return BadRequest("Hata!");
+        }
+
+
+        public async Task<IActionResult> Edit(int id)
+        {
+            var user = await _service.GetByIdAsync(id);
+            var userDto = _mapper.Map<KullaniciCreateDto>(user);
+            if (userDto != null)
+            {
+                return View(userDto);
+            }
+
+            return BadRequest();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(KullaniciCreateDto dto)
+        {
+            if (ModelState.IsValid && dto !=null)
+            {
+                dto.GuncellemeTarihi = DateTime.Now;
+                await _service.UpdateAsync(_mapper.Map<Kullanici>(dto));
+                return RedirectToAction(nameof(Index));
+            }
+
+            return View(dto);
+        }
+
     }
 }

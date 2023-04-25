@@ -1,0 +1,54 @@
+﻿@model IsTakip.Core.DTOs.KullaniciDTOs.KullaniciCreateDto
+
+@{
+    ViewData["Title"] = "Düzenle";
+}
+
+<h4>Düzenle</h4>
+<hr />
+<div class="row mx-auto">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Ad" class="control-label"></label>
+                <input asp-for="Ad" class="form-control" />
+                <span asp-validation-for="Ad" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Soyad" class="control-label"></label>
+                <input asp-for="Soyad" class="form-control" />
+                <span asp-validation-for="Soyad" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="KullaniciKodu" class="control-label"></label>
+                <input asp-for="KullaniciKodu" class="form-control" />
+                <span asp-validation-for="KullaniciKodu" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="KullaniciSifre" class="control-label"></label>
+                <input asp-for="KullaniciSifre" class="form-control" />
+                <span asp-validation-for="KullaniciSifre" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="MailBildirim" /> @Html.DisplayNameFor(model => model.MailBildirim)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="RolTanim" class="control-label"></label>
+                <input asp-for="RolTanim" class="form-control" />
+                <span asp-validation-for="RolTanim" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Kaydet" class="btn btn-slack" />
+                <a class="btn btn-pinterest" asp-action="Index">Vazgeç</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
